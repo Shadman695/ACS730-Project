@@ -20,5 +20,5 @@ resource "aws_subnet" "private_staging" {
 }
 
 output "staging_vpc_id" {
-  value = aws_vpc.main.id
+  value = aws_vpc.staging.id
 }
