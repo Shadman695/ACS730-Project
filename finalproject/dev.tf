@@ -21,8 +21,8 @@ resource "aws_vpc" "main" {
 # Create public subnets
 resource "aws_subnet" "public" {
   count             = 3
-  vpc_id            = aws_vpc.main.id
-  cidr_block        = cidrsubnet(aws_vpc.main.cidr_block, 4, count.index)
+  vpc_id            = aws_vpc.dev.id
+  cidr_block        = cidrsubnet(aws_vpc.dev.cidr_block, 4, count.index)
   availability_zone = "us-east-1a"
 }
 
@@ -30,9 +30,9 @@ resource "aws_subnet" "public" {
 resource "aws_subnet" "private" {
   count             = 3
   vpc_id            = aws_vpc.main.id
-  cidr_block        = cidrsubnet(aws_vpc.main.cidr_block, 4, count.index + 3) # Start from the 4th subnet
+  cidr_block        = cidrsubnet(aws_vpc.dev.cidr_block, 4, count.index + 3) # Start from the 4th subnet
   availability_zone = "us-east-1b"
 }
 output "main_vpc_id" {
-  value = aws_vpc.main.id
+  value = aws_vpc.dev.id
 }
