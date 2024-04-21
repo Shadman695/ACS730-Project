@@ -18,7 +18,7 @@ resource "aws_autoscaling_group" "shadman_autoscaling_group" {
   name                 = "shadman-autoscaling-group"
   launch_configuration = aws_launch_configuration.shadman_launch_configuration.name
   min_size             = 1
-  max_size             = 3
+  max_size             = 5
   desired_capacity     = 2
   vpc_zone_identifier  = [aws_subnet.dev_public_subnets[0].id] # Use one of the public subnets in VPC "dev"
   target_group_arns    = [aws_lb_target_group.shadman_target_group.arn] # Use the target group ARN
